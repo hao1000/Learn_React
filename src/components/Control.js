@@ -8,10 +8,14 @@ return (
          
            <div className="row mt-15">
             {/* // Search  : */}
-            <Search onSearch={this.props.onSearch}></Search>
+            <Search
+                 onSearch={this.props.onSearch}
+            ></Search>
                
             {/* //  Sort : */}
-            <Sort></Sort>
+            <Sort
+                 onSort={this.props.onSort}
+            ></Sort>
             <br/>   <br/>   <br/>
             </div>
         );

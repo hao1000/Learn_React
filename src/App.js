@@ -182,6 +182,9 @@ class App extends Component {
             keyword : keyword
         });
     }
+    onSort =(sort) => {
+        console.log(sort);
+    }
     render() {
         var {tasks,isDisplayForm,taskEditting,filter,keyword}=this.state; // var tasks=this.state.tasks
         //console.log(filter);
@@ -248,8 +251,9 @@ class App extends Component {
                         
                             {/* //Search_Sort */}
                             
-                            <Control onSearch = {this.onSearch}  />
-
+                            <Control 
+                                onSearch = {this.onSearch} 
+                                onSort = {this.onSort} />
                             {/*//List */}
                             <TaskList  
                             // Truyen data tu con -> cha thi khai bao cac function de nhan lai
