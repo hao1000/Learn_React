@@ -15,6 +15,8 @@ return (
             {/* //  Sort : */}
             <Sort
                  onSort={this.props.onSort}
+                 sortBy={this.props.sortBy}
+                 sortValue = {this.props.sortValue}
             ></Sort>
             <br/>   <br/>   <br/>
             </div>

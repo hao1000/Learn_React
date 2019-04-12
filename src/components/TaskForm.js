@@ -18,10 +18,8 @@ class TaskForm extends Component {
             this.setState({
                 id:this.props.task.id,
                 name:this.props.task.name,
-                status:this.props.task.status,
-                
-            });
-           
+                status:this.props.task.status,         
+            });          
         }
     }
 

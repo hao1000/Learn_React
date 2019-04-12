@@ -15,10 +15,8 @@ class App extends Component {
             filterName:'',
             filterStatus:'-1',
             itemEditing:null,
-            sort : {
-                by :'name',
-                value: 1
-            }
+            sortBy:'name',
+            sortValue:1
             // isDisplayForm:false,
             // taskEditting:null,
             // filter:{
@@ -182,11 +180,29 @@ class App extends Component {
             keyword : keyword
         });
     }
-    onSort =(sort) => {
-        console.log(sort);
+    onSort =(sortBy,sortValue) => {
+     //  console.log(sortBy , ':',sortValue);
+     // Set 2 bien vao sate  
+     this.setState({
+         
+             sortBy:sortBy,
+             sortValue:sortValue
+         
+     });
+
+    // console.log(this.state);
     }
     render() {
-        var {tasks,isDisplayForm,taskEditting,filter,keyword}=this.state; // var tasks=this.state.tasks
+        var {
+            tasks,
+            isDisplayForm,
+            taskEditting,
+            filter,
+            keyword,
+            sortBy,
+            sortValue      
+        }=this.state; // var tasks=this.state.tasks
+
         //console.log(filter);
         if(filter){
             if (filter.name) {
@@ -214,7 +230,21 @@ class App extends Component {
                                             task={taskEditting}
                                         /> 
                                         : ''
-        
+        // Sort:
+                                        //   console.log(sortBy , ':' , sortValue);
+        if(sortBy==='name'){
+            tasks.sort((a,b) =>{
+                if(a.name > b.name) return sortValue;
+                else if(a.name <b.name ) return -sortValue;
+                else return 0;
+        });
+        }else{
+                tasks.sort((a,b) =>{
+                if(a.status > b.status) return -sortValue;
+                else if(a.status <b.status ) return sortValue;
+                else return 0;
+        });
+     }
             return (
 
                 <div className="container">
@@ -237,7 +267,7 @@ class App extends Component {
                                     onClick={this.onToggleForm}   
                             >
                                 <span className="fa fa-plus mr-5"></span>
-                                Thêm Công Việc
+                                Add 
                             </button> <br/><br/>
                             <div> {/* &nbsp; */}
                             
@@ -253,7 +283,11 @@ class App extends Component {
                             
                             <Control 
                                 onSearch = {this.onSearch} 
-                                onSort = {this.onSort} />
+                                onSort   = {this.onSort}
+                                sortBy={sortBy}
+                                sortValue={sortValue}
+                                
+                                />
                             {/*//List */}
                             <TaskList  
                             // Truyen data tu con -> cha thi khai bao cac function de nhan lai
