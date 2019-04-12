@@ -1,2 +1,17 @@
 luonghao88@gmail.com
 2019/04/12
+-- Dong bo len Web
+git push
+
+1. git status  -- Kiem tra file nao chua untrack
+// Update Folder
+2.git add + ten file ( all: git add *)   -- Add file
+3.git status  -- Check lai
+4.git commit -m"Add commnet"
+5.git push     -- Day len server
+
+--------------------------
+Publish
+https://vn.000webhost.com/
+https://freevnn.com
+https://byet.host/
