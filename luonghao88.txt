@@ -5,7 +5,7 @@ git push
 
 1. git status  -- Kiem tra file nao chua untrack
 // Update Folder
-2.git add + ten file ( all: git add *)   -- Add file
+2.git add + ten file ( all: git add *)   -- Add file -- git add . (all)
 3.git status  -- Check lai
 4.git commit -m"Add commnet"
 5.git push     -- Day len server
