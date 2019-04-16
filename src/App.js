@@ -3,6 +3,7 @@ import './App.css';
 import TaskForm from './components/TaskForm'
 import Control from './components/Control'
 import TaskList from './components/TaskList'
+import demo from './trainning/demo'
 
 class App extends Component {
 
@@ -182,7 +183,7 @@ class App extends Component {
     }
     onSort =(sortBy,sortValue) => {
      //  console.log(sortBy , ':',sortValue);
-     // Set 2 bien vao sate  
+     // Set 2 bien vao state  
      this.setState({
          
              sortBy:sortBy,
@@ -283,6 +284,7 @@ class App extends Component {
                             
                             <Control 
                                 onSearch = {this.onSearch} 
+                                
                                 onSort   = {this.onSort}
                                 sortBy={sortBy}
                                 sortValue={sortValue}
