@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TaskItem from './TaskItem';
-
+import {connect } from 'react-redux'; // Ket noi voi Store de len lay xuong
 
 
 class TaskList extends Component {
@@ -29,9 +29,15 @@ class TaskList extends Component {
     }
 
 render() {
-    var {tasks} =this.props;// var tasks =this.props.tasks
-    var {filterName,filterStatus}=this.state;
+   
+
+    var tasks =this.props.tasks_get;// var tasks =this.props.tasks
+
+   // var {tasks_get} =this.props.tasks_get;// var tasks =this.props.tasks
+  //var {filterName,filterStatus}=this.state;
+
     var elmTaskItem =tasks.map((task,index)=>{
+        // var elmTaskItem =tasks.map((task,index)=>{
 
             return <TaskItem
                 key={task.id}
@@ -63,7 +69,7 @@ render() {
                                 type="text" 
                                 className="form-control" 
                                 name="filterName"
-                                value={filterName}
+                                value={this.state.filterName}
                                 onChange={this.onChange}    
                             ></input>
 
@@ -73,7 +79,7 @@ render() {
                             <select 
                                 name="filterStatus" 
                                 className="form-control"
-                                value={filterStatus}
+                                value={this.state.filterStatus}
                                 onChange ={this.onChange}
                                 >
                                     <option value={-1}>Tất Cả</option>
@@ -91,5 +97,23 @@ render() {
             );
         }
 }
+//  Cac State cua Store se chuyen thanh cac props cua components
+// 
+const mapStatetoProps =(state) => {  // state của store
+    return {
+        tasks_get: state.tasks // Key : tasks / value : state( trong store - reducer)
+        // Lay tasks tren Store xuong
+       
+    }
+};
 
-export default TaskList;
+// const mapDispatchToProps =(dispatch,props) => {
+//     return {
+//         onAddTask : (tasks) => {
+//             dispatch()
+//         }
+//     }
+// } 
+
+//
+export default connect(mapStatetoProps,null) (TaskList);

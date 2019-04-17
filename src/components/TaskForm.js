@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
+import * as actions from './../actions/index'
 
 class TaskForm extends Component {
 
@@ -59,8 +60,9 @@ class TaskForm extends Component {
     }
     onSubmit = (event) => {
         event.preventDefault(); // Khong cho load lai Form 
-        this.props.onSubmit(this.state);
+       // this.props.onSubmit(this.state);
         // Cancel & Save Form :
+        this.props.onAddTask(this.state);
         this.onClear();
         this.onCloseForm();
     }
@@ -129,5 +131,21 @@ class TaskForm extends Component {
         );
     }
 }
+const mapStateToProps = (state) => { // Vì có 1 tham số nên có thể bỏ ()
+    // Phải trả về 1 object
+    return { 
 
-export default TaskForm;
+    }
+};
+// Gửi tới Reducer 
+// Chuyển dispath thành props 
+const mapDispatchToProps = (dispath,props) => {
+    return{
+        onAddTask:( task) => {
+            dispath(actions.addTask(task)); // Từ action đã import
+        console.log("mapDispatchToPropsb2")
+        }
+    }
+}
+// Connect : tham số thứ 2 là 1 action
+export default  connect(mapStateToProps,mapDispatchToProps)(TaskForm);
