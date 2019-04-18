@@ -141,9 +141,11 @@ const mapStateToProps = (state) => { // Vì có 1 tham số nên có thể bỏ 
 // Chuyển dispath thành props 
 const mapDispatchToProps = (dispath,props) => {
     return{
-        onAddTask:( task) => {
+        onAddTask :( task) => {
             dispath(actions.addTask(task)); // Từ action đã import
-        console.log("mapDispatchToPropsb2")
+        },
+        onCloseForm :()=>{
+            dispath(actions.closeForm());
         }
     }
 }

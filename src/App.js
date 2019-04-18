@@ -3,15 +3,15 @@ import './App.css';
 import TaskForm from './components/TaskForm'
 import Control from './components/Control'
 import TaskList from './components/TaskList'
+import {connect} from 'react-redux'
+import * as actions from './actions/index'
 
 
 class App extends Component {
 
     constructor(props){
         super(props);
-        this.state={     // Khai bao cac state  va kieu cua no:
-          
-            isShowingForm:false,
+        this.state={     // Khai bao cac state  va kieu cua no
             keyword:'',
             filterName:'',
             filterStatus:'-1',
@@ -23,25 +23,10 @@ class App extends Component {
 
 
     onToggleForm=()=>{
-        if (this.state.isDisplayForm && this.state.taskEditting !== null) {
-            this.setState({
-                isDisplayForm: true,
-                taskEditting: null
-            });
-
-        } else {
-            this.setState({
-                isDisplayForm: !this.state.isDisplayForm,
-                taskEditting: null
-            });
-        }
+    
+        this.props.onToggleForm();
     }
-    onCloseForm =()=>{
-        this.setState({
-            isDisplayForm:false,
 
-        });
-    }
 
     onShowForm =()=>{
         this.setState({
@@ -151,13 +136,15 @@ class App extends Component {
     }
     render() {
         var {
-            isDisplayForm,
+       
             taskEditting,
            // filter,
             //keyword,
             sortBy,
             sortValue      
         } = this.state; // var tasks=this.state.tasks
+
+        var {isDisplayForm}  = this.props;
 
         //console.log(filter);
         // if(filter){
@@ -180,9 +167,10 @@ class App extends Component {
         //         return task.name.toLowerCase().indexOf(keyword)!==-1;
         //     });
         // }
+        // Open Form Add
+        //alert("render");
         var elmTaskForm=isDisplayForm ? <TaskForm  
-                                         //   onSubmit ={this.onSubmit}
-                                            onCloseForm={this.onCloseForm} 
+                                      
                                             task={taskEditting}
                                         /> 
                                         : '';
@@ -262,4 +250,19 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state =>{
+    return {
+        isDisplayForm:state.isDisplayForm
+    };
+}
+// Goi Action open Form
+const mapDispathToProps =(dispatch,props) =>{
+    return {
+        onToggleForm :() => {
+            dispatch(actions.toggleForm());
+        }
+      
+    };
+}
+
+export default connect(mapStateToProps,mapDispathToProps) (App);

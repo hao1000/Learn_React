@@ -27,3 +27,5 @@ https://byet.host/
 + node -v : v11.10.0
 
 npm sintall redux-react --save
+
+20190418
