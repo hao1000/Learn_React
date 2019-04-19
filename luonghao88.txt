@@ -26,4 +26,10 @@ https://byet.host/
 + npm -v : 6.9.0
 + node -v : v11.10.0
 
-npm sintall redux-react --save
+npm install redux redux-react react-router-dom --save
+
+------------------
+npx create-react-app my-app
+------------------
+
+
