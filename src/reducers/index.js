@@ -1,12 +1,14 @@
-// Store 
+// Root - Reducer 
 
 import { combineReducers } from 'redux';
-import tasks from './task' // Nhận actions
+import tasksHao from './task' // Nhận actions
 import isDisplayForm from './isDisplayForm';
+import itemEditting from './itemEditting';
 
 const myReducer  = combineReducers({
-    tasks, // task : tasks
-    isDisplayForm  // isDisplayForm : isDisplayForm
+    tasksHao, // task : tasks
+    isDisplayForm , // isDisplayForm : isDisplayForm
+    itemEditting
 });
 
 export default myReducer;

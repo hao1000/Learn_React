@@ -6,41 +6,33 @@ class TaskForm extends Component {
 
     constructor(props){
         super(props);
-        this.state={
-            id:'',
-            name:'',
-            status:false
-        }        
+        this.state={};      
     }
-
     componentWillMount()
     {
-        if(this.props.task){
+        if(this.props.itemEditting && this.props.itemEditting.id !=null){
             this.setState({
-                id:this.props.task.id,
-                name:this.props.task.name,
-                status:this.props.task.status,         
+                id:this.props.itemEditting.id,
+                name:this.props.itemEditting.name,
+                status:this.props.itemEditting.status,         
             });          
+        }else{
+            this.onClear();
         }
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps && nextProps.task){
+        if(nextProps && nextProps.itemEditting){
             this.setState({
-                id:nextProps.task.id,
-                name:nextProps.task.name,
-                status:nextProps.task.status,               
+                id:nextProps.itemEditting.id,
+                name:nextProps.itemEditting.name,
+                status:nextProps.itemEditting.status,               
             });
             
-        }else if(!nextProps.task){
-            this.setState({
-                id:'',
-                name:'',
-                status:false
-            });
+        }else{
+            this.onClear();
         }
     }
-
     onCloseForm =() => {
         this.props.onCloseForm();
     }
@@ -68,23 +60,28 @@ class TaskForm extends Component {
     }
 
     onClear = () =>{
-        this.setState({
-            name:'',
-            status:false
-        });
-}
+            this.setState({
+                id:'',
+                name:'',
+                status:false
+            });
+        }
+    onExitForm=() => {
+            this.props.onCloseForm();
+        }
 
     render() {
-        var{id}=this.state;
+      
+      if(!this.props.isDisplayForm) return '';
         return (
 
             <div className="panel panel-warning">
                 <div className="panel-heading">
                     <h3 className="panel-title">
-                    {id !==''?'Cập Nhật Công Việc':'Thêm Công Việc'} 
+                    {!this.state.id ? 'Thêm Công Việc':'Cập Nhật Công Việc'} 
                 
                     <span className="fa fa-times-circle text-right"
-                            onClick={this.onCloseForm}
+                            onClick={this.onExitForm}
                     ></span>
 
                     </h3>
@@ -99,13 +96,16 @@ class TaskForm extends Component {
                                 type="text" 
                                 className="form-control"
                                 name="name" 
-                                value={this.state.name}
+                                // Set name
+                                 value={this.state.name}
+                               
                                 onChange={this.onChange}
                             ></input>
                         </div>
 
                         <label>Trạng Thái : </label>
                         <select name="status" className="form-control"
+                        //Set status
                         value={this.state.status}
                         onChange={this.onChange}
                         
@@ -134,7 +134,8 @@ class TaskForm extends Component {
 const mapStateToProps = (state) => { // Vì có 1 tham số nên có thể bỏ ()
     // Phải trả về 1 object
     return { 
-
+        isDisplayForm:state.isDisplayForm ,// State lat tu store -> chuyen qua props -> chuyen len tren de su sung 
+        itemEditting:state.itemEditting
     }
 };
 // Gửi tới Reducer 
@@ -147,6 +148,7 @@ const mapDispatchToProps = (dispath,props) => {
         onCloseForm :()=>{
             dispath(actions.closeForm());
         }
+    
     }
 }
 // Connect : tham số thứ 2 là 1 action

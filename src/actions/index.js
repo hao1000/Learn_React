@@ -1,5 +1,5 @@
 import * as types from './../constants/ActionTypes';
-// Actions 
+// Store
 export const listAll =() => {
     return {
         type:types.LIST_ALL
@@ -34,3 +34,25 @@ export const closeForm =() => {
         
     }
 };
+export const updateStatus =(id) => {
+    return {
+        type:types.UPDATE_STATUS_TASK,
+        id // id:id
+    }
+};
+
+export const deleteTask =(id) => {
+    return {
+        type:types.DELETE_TASK,
+        id // id:id
+    }
+};
+export const editTask =(task) => {
+    return {
+        type:types.EDIT_TASK,
+        task 
+    }
+};
+
+
+

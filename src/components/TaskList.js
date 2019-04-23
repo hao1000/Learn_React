@@ -35,17 +35,18 @@ render() {
 
    // var {tasks_get} =this.props.tasks_get;// var tasks =this.props.tasks
   //var {filterName,filterStatus}=this.state;
-
+  console.log('Hien thi danh sach');
+  
     var elmTaskItem =tasks.map((task,index)=>{
-        // var elmTaskItem =tasks.map((task,index)=>{
-
             return <TaskItem
                 key={task.id}
                 index={index} 
                 task={task}
+
+                // Truyen vao cho con TaskItem : React
+                //onUpdateStatus={this.props.onUpdateStatus}
                 
-                onUpdateStatus={this.props.onUpdateStatus}
-                onDelete ={this.props.onDelete}
+               // onDelete ={this.props.onDelete}
                 onUpdate ={this.props.onUpdate}
             />
     });
@@ -101,9 +102,8 @@ render() {
 // 
 const mapStatetoProps =(state) => {  // state của store
     return {
-        tasks_get: state.tasks // Key : tasks / value : state( trong store - reducer)
+        tasks_get: state.tasksHao // Key : tasks / value : state( trong store - reducer)
         // Lay tasks tren Store xuong
-       
     }
 };
 
