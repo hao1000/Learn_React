@@ -33,3 +33,17 @@ npx create-react-app my-app
 ------------------
 
 
+git init
+git status
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/username/railsgirls.git
+git push -u origin master
+
+Nếu tiếp tục thay đổi và muốn đưa ứng dụng của mình lên GitHub, bạn chỉ việc lặp lại ba câu lệnh sau:
+
+git add .
+git commit -m "type your commit message here"
+git push origin master
+
+
