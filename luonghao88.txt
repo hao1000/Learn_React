@@ -27,6 +27,8 @@ https://byet.host/
 + node -v : v11.10.0
 
 npm install redux react-redux react-router-dom --save
+--------------
+Add 2019/05/13 15h45
 
 ------------------
 npx create-react-app my-app
